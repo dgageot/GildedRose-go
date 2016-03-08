@@ -1,4 +1,4 @@
-package inn
+package main
 
 type Inn struct {
 	Items []*Item

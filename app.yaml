@@ -1,0 +1,8 @@
+runtime: go
+api_version: go1
+application: code-story-blog
+version: v1
+
+handlers:
+- url: /.*
+  script: _go_app
