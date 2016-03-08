@@ -1,12 +1,12 @@
-package main
+package inn
 
 type Inn struct {
-	items []*Item
+	Items []*Item
 }
 
 func NewInn() *Inn {
 	return &Inn{
-		items: []*Item{
+		Items: []*Item{
 			{"+5 Dexterity Vest", 10, 20},
 			{"Aged Brie", 2, 0},
 			{"Elixir of the Mongoose", 5, 7},
@@ -18,7 +18,7 @@ func NewInn() *Inn {
 }
 
 func (inn *Inn) UpdateQuality() {
-	for _, item := range inn.items {
+	for _, item := range inn.Items {
 		item.Update()
 	}
 }

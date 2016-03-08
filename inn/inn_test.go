@@ -1,4 +1,4 @@
-package main
+package inn
 
 import (
 	"testing"
@@ -11,12 +11,12 @@ func Test_GildedRose(t *testing.T) {
 	legacyInn := legacy.NewInn()
 
 	for day := 0; day < 1000; day++ {
-		for i := 0; i < len(inn.items); i++ {
-			if len(inn.items) != legacyInn.Items.Size() {
-				t.Fatalf("Expected item count %d. Got %d", legacyInn.Items.Size(), len(inn.items))
+		for i := 0; i < len(inn.Items); i++ {
+			if len(inn.Items) != legacyInn.Items.Size() {
+				t.Fatalf("Expected item count %d. Got %d", legacyInn.Items.Size(), len(inn.Items))
 			}
 
-			item := inn.items[i]
+			item := inn.Items[i]
 			legacyItem := legacyInn.Items.Get(i)
 
 			if item.Name != legacyItem.GetName() {
