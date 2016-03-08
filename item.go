@@ -1,49 +1,56 @@
 package main
 
 type Item struct {
-	name    string
-	sellIn  int
-	quality int
+	Name    string
+	SellIn  int
+	Quality int
 }
 
-func (i *Item) GetName() string {
-	return i.name
-}
+func (item *Item) Update() {
+	if item.Name == "Sulfuras, Hand of Ragnaros" {
+		return
+	}
 
-func (i *Item) GetSellIn() int {
-	return i.sellIn
-}
+	item.SellIn -= 1
 
-func (i *Item) GetQuality() int {
-	return i.quality
-}
+	switch item.Name {
+	case "Aged Brie":
+		item.increaseQuality()
 
-func (i *Item) SetSellIn(sellIn int) {
-	i.sellIn = sellIn
-}
+		if item.SellIn < 0 {
+			item.increaseQuality()
+		}
+	case "Backstage passes to a TAFKAL80ETC concert":
+		item.increaseQuality()
 
-func (i *Item) SetQuality(quality int) {
-	i.quality = quality
-}
+		if item.SellIn < 10 {
+			item.increaseQuality()
+		}
 
-type Items struct {
-	list []*Item
-}
+		if item.SellIn < 5 {
+			item.increaseQuality()
+		}
 
-func NewItems() *Items {
-	return &Items{
-		list: []*Item{},
+		if item.SellIn < 0 {
+			item.Quality = 0
+		}
+	default:
+		item.decreaseQuality()
+
+		if item.SellIn < 0 {
+			item.decreaseQuality()
+		}
 	}
 }
 
-func (is *Items) Add(item *Item) {
-	is.list = append(is.list, item)
+func (item *Item) increaseQuality() {
+	if item.Quality < 50 {
+		item.Quality += 1
+	}
 }
 
-func (is *Items) Get(index int) *Item {
-	return is.list[index]
-}
-
-func (is *Items) Size() int {
-	return len(is.list)
+func (item *Item) decreaseQuality() {
+	if item.Quality > 0 {
+		item.Quality -= 1
+	}
 }
